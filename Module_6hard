@@ -1,0 +1,112 @@
+import math
+
+class Figure:
+    
+    def __init__(self, red, green, blue, sised_count):
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.sised_count = sised_count
+        self.__color = []
+        self.list_color = []
+        self.color_check = False
+        self.__sides = []
+        self.list_sides = []
+        self.sides_check = False
+        self.filled = None
+    
+    def get_color(self):
+        self.list_color.append(self.red)
+        self.list_color.append(self.green)
+        self.list_color.append(self.blue)
+        return self.list_color
+        
+    def __is_valid_color(self):
+        count = 0
+        for color in self.list_color:
+            if 0 <= color <= 255 and isinstance(color, int):
+                count += 1
+        if count == 3:
+            self.color_check = True
+            print("Цвет изменен")
+        else:
+            print("Не корректные значения цвета")
+            
+    def set_color(self):
+        if self.color_check == True:
+            for new_color in self.list_color:
+                self._Figure__color.append(new_color)
+        return print(f'Новый цвет: {self.__color}')
+        
+    def __is_valid_sides(self, *other_sides):
+        for new_sides in other_sides:
+            if new_sides > 0 and isinstance(new_sides, int):
+                self.list_sides.append(new_sides)
+        if len(self.list_sides) == self.sised_count:
+            self.sides_check = True
+            return self.list_sides
+        else:
+            sides = []
+            num_ = 1
+            for i in range(self.sised_count):
+                sides.append(num_)
+        print(f'Кол-во сторон должно быть: {sides}')                
+        
+    def get_sides(self):
+        if self.sides_check == True:
+            for sides in self.list_sides:
+                self.__sides.append(sides)
+            return print(f'Сторона фигуры: {self.__sides}')
+        
+    def __len__(self):
+        self.perimetr = len(self.__sides) * self.__sides[0]
+        return print(f'Периметр фигуры: {self.perimetr}')
+        
+        
+class Circle(Figure):
+    
+    def __init__(self, red, green, blue, sised_count = 1):
+        super().__init__(red, green, blue, sised_count)
+        
+    def __radius(self):
+        self.rad = 0
+        self.rad = self.perimetr / math.pi
+        return print(f'Радиус круга: {self.rad}')
+        
+circle = Circle(100, 200, 150)
+circle.get_color()
+circle._Figure__is_valid_color()
+circle.set_color()
+circle._Figure__is_valid_sides(8)
+circle.get_sides()
+circle.__len__()
+circle._Circle__radius()
+
+
+class Triangle(Figure):
+    
+    def __init__(self, red, green, blue, sised_count = 3):
+        super().__init__(red, green, blue, sised_count)
+        
+triangle = Triangle(100, 200, 150)
+triangle.get_color()
+triangle._Figure__is_valid_color()
+triangle.set_color()
+triangle._Figure__is_valid_sides(8, 7, 4)
+triangle.get_sides()
+triangle.__len__()
+
+
+class Cube(Figure):
+    
+    def __init__(self, red, green, blue, sised_count = 12):
+        super().__init__(red, green, blue, sised_count)
+        
+cube = Cube(100, 200, 150)
+cube.get_color()
+cube._Figure__is_valid_color()
+cube.set_color()
+cube._Figure__is_valid_sides(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
+cube.get_sides()
+cube.__len__()
+
